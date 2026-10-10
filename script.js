@@ -92,11 +92,19 @@
   /* ---------- Easter egg: find the bug ---------- */
   const toast = document.getElementById('toast');
   let toastTimer;
-  function showToast(msg) {
+  function showToast(msg, link) {
     toast.textContent = msg;
+    if (link) {
+      const a = document.createElement('a');
+      a.href = link.href;
+      a.className = 'toast-link';
+      a.textContent = link.text;
+      a.addEventListener('click', () => { toast.hidden = true; });
+      toast.append(' ', a);
+    }
     toast.hidden = false;
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => { toast.hidden = true; }, 4200);
+    toastTimer = setTimeout(() => { toast.hidden = true; }, link ? 8000 : 4200);
   }
 
   const hosts = document.querySelectorAll('.card, .release .rel-body, .principles li');
@@ -117,7 +125,7 @@
     e.preventDefault();
     e.stopPropagation();
     bug.classList.add('squashed');
-    showToast('🐞 BUG-001 reported & fixed. You have a QA eye. Let\'s talk →');
+    showToast('🐞 BUG-001 reported & fixed. You have a QA eye.', { href: '#contact', text: 'Let\'s talk →' });
     const hint = document.getElementById('hint');
     hint.textContent = '0 bugs on this page (thanks to you)';
     hint.disabled = true;

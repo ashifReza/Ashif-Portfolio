@@ -243,6 +243,8 @@ h3 { margin: 0; font-size: 18px; letter-spacing: -0.01em; }
   background: var(--panel); border: 1px solid var(--green); color: var(--text); box-shadow: 0 20px 50px -10px rgba(0,0,0,.6);
   animation: rise .3s ease-out;
 }
+.toast-link { color: var(--green); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.toast-link:hover { color: var(--cyan); }
 @keyframes rise { from { opacity: 0; transform: translate(-50%, 12px); } }
 
 /* REVEAL */
